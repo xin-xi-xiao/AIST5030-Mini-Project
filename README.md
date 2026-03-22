@@ -179,7 +179,7 @@ Orchestrates all 24 experiments with proper GPU scheduling.
 - Model: Stable Diffusion v1.5 (UNet, 860M params)
 - Method: DreamBooth subject-driven finetuning
 - Precision: FP16, AdamW optimizer
-- Learning rate: 5e-4, 800 steps, batch size 1
+- Learning rate: 1e-5, 800 steps, batch size 1
 - PEFT injection points: {to_q, to_k, to_v, to_out.0}
 
 **Evaluation Metrics:**
@@ -214,7 +214,7 @@ Orchestrates all 24 experiments with proper GPU scheduling.
 ✅ **Evidence & Reproducibility:**
 - [x] All 24 eval_results.json with metrics (CLIP-I, CLIP-T, DINO, trainable params)
 - [x] Per-run config.json, loss_history.json, baseline + generated images (50 per run)
-- [x] Reproduc能 scripts: train.py, evaluate.py, run_all_subjects.sh
+- [x] Reproducible scripts: train.py, evaluate.py, run_all_subjects.sh
 - [x] Final report PDF: 3 pages, quantitative tables + qualitative figures
 - [x] Course submission checklist integrated into report
 
