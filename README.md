@@ -49,6 +49,14 @@ Manual install:
 pip install -r requirements.txt
 ```
 
+LaTeX report toolchain (user-space, no sudo required):
+
+```bash
+conda install -y -n base -c conda-forge tectonic
+cd report/latex_submission
+./build.sh
+```
+
 ## 4. Data Preparation
 
 Put subject images under:
@@ -93,6 +101,11 @@ prompts/val_prompts_25.txt
 8. report/tables/table_all_experiments_compact.csv
 9. report/report_final.md
 10. report/report_final_en.md
+11. report/latex_submission/main.tex
+12. report/latex_submission/main.pdf
+13. report/latex_submission/submission_checklist.tex
+14. report/latex_submission/submission_checklist.pdf
+15. report/latex_submission/SUBMISSION_CHECKLIST.md
 
 ## 7. Integrity Checklist (Expected)
 

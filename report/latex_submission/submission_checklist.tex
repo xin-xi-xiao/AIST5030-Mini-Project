@@ -1,0 +1,64 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=0.65in]{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{booktabs}
+\setlist{nosep,leftmargin=*}
+
+\title{Course Submission Checklist}
+\author{Mingjun Wang (ID: 1155251294)}
+\date{March 23, 2026}
+
+\begin{document}
+\maketitle
+\vspace{-1em}
+\small
+
+\section*{Repository}
+\begin{itemize}
+\item GitHub URL: \url{https://github.com/xin-xi-xiao/AIST5030-Mini-Project.git}
+\item Branch: \texttt{main}
+\item Key reports: \texttt{report/report\_final.md}, \texttt{report/report\_final\_en.md}, \texttt{report/latex\_submission/main.tex}
+\end{itemize}
+
+\section*{Reproduction Commands}
+\begin{itemize}
+\item Environment: \texttt{bash scripts/setup\_env.sh}
+\item Full run (all subjects): \texttt{bash scripts/run\_all\_subjects.sh}
+\item Aggregation: \texttt{python scripts/collect\_results.py --outputs\_root outputs --save\_csv figures/summary.csv}
+\item Visualization: \texttt{python scripts/visualize.py --outputs\_root outputs --figures\_root figures}
+\end{itemize}
+
+\section*{Result Evidence Paths}
+\begin{itemize}
+\item Full outputs: \texttt{outputs\_realfull\_20260323\_011116}
+\item Figures and summary: \texttt{figures/realfull\_20260323\_011116}
+\item Final tables for submission:
+  \begin{itemize}
+  \item \texttt{report/tables/summary\_all\_subjects.csv}
+  \item \texttt{report/tables/table\_method\_means\_efficiency.csv}
+  \item \texttt{report/tables/table\_subject\_best\_detailed.csv}
+  \item \texttt{report/tables/table\_all\_experiments\_compact.csv}
+  \end{itemize}
+\item Integrity recheck note: \texttt{report/latex\_submission/assets/tables/integrity\_audit.txt}
+\end{itemize}
+
+\section*{Integrity and Requirement Coverage}
+\begin{tabular}{@{}p{0.66\linewidth}p{0.26\linewidth}@{}}
+\toprule
+Check item & Status \\
+\midrule
+3 subjects $\times$ 8 runs (24 total) complete & Pass \\
+Per-run required JSON files complete & Pass \\
+Baseline/generated image count = 25/25 per run & Pass \\
+Loss curves included in final report & Pass \\
+Before/after qualitative results included & Pass \\
+GitHub repository + clean README prepared & Pass \\
+\bottomrule
+\end{tabular}
+
+\section*{Risk Boundary Statement}
+Conclusions are valid for the fixed assignment setup (3 subjects, 25 prompts, 800 steps, SD-v1.5). Ranking details may shift under different subject diversity or budget.
+
+\end{document}

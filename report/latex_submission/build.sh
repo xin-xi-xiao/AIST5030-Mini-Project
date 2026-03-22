@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if ! command -v pdflatex >/dev/null 2>&1; then
-  echo "pdflatex not found. Install TeX first, e.g.:"
-  echo "  sudo apt install texlive-latex-base texlive-latex-recommended texlive-latex-extra"
+if ! command -v tectonic >/dev/null 2>&1; then
+  echo "tectonic not found. Install with:"
+  echo "  conda install -y -n base -c conda-forge tectonic"
   exit 1
 fi
 
-pdflatex -interaction=nonstopmode -halt-on-error main.tex
-pdflatex -interaction=nonstopmode -halt-on-error main.tex
+tectonic main.tex
+tectonic submission_checklist.tex
 
 echo "Built: $(pwd)/main.pdf"
+echo "Built: $(pwd)/submission_checklist.pdf"

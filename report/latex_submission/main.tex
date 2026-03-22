@@ -128,6 +128,21 @@ LoRA & 0.7115 & 0.3174 & 0.2073 & 1.99M \\
 \end{tabular}
 \end{table}
 
+\begin{table}[h]
+\centering
+\caption{Efficiency view (quality per million trainable params).}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Method & CLIP-I / M-params & DINO / M-params \\
+\midrule
+OFT  & 0.0563 & 0.0196 \\
+COFT & 0.0615 & 0.0169 \\
+BOFT & 1.3627 & 0.3772 \\
+LoRA & 0.3570 & 0.1040 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \textbf{Interpretation}:
 (1) OFT is strongest on average identity/semantic quality (CLIP-I/DINO).
 (2) BOFT is the most parameter-efficient (smallest trainable set).
@@ -151,6 +166,23 @@ cat & E2\_oft\_r8 (0.7305) & E3\_oft\_r2 (0.2216) \\
 \begin{figure}[h]
 \centering
 \begin{subfigure}[b]{0.32\columnwidth}
+  \includegraphics[width=\linewidth]{assets/plots/dog_loss_curves.png}
+  \caption{Dog}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\columnwidth}
+  \includegraphics[width=\linewidth]{assets/plots/backpack_loss_curves.png}
+  \caption{Backpack}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\columnwidth}
+  \includegraphics[width=\linewidth]{assets/plots/cat_loss_curves.png}
+  \caption{Cat}
+\end{subfigure}
+\caption{Training loss curves for three subjects (requirement-critical evidence).}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}[b]{0.32\columnwidth}
     \includegraphics[width=\linewidth]{assets/plots/dog_metrics.png}
     \caption{Dog}
 \end{subfigure}
@@ -163,6 +195,23 @@ cat & E2\_oft\_r8 (0.7305) & E3\_oft\_r2 (0.2216) \\
     \caption{Cat}
 \end{subfigure}
 \caption{Per-subject metric comparison plots.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}[b]{0.32\columnwidth}
+  \includegraphics[width=\linewidth]{assets/plots/dog_energy.png}
+  \caption{Dog}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\columnwidth}
+  \includegraphics[width=\linewidth]{assets/plots/backpack_energy.png}
+  \caption{Backpack}
+\end{subfigure}
+\begin{subfigure}[b]{0.32\columnwidth}
+  \includegraphics[width=\linewidth]{assets/plots/cat_energy.png}
+  \caption{Cat}
+\end{subfigure}
+\caption{Hyperspherical energy change comparison (all methods in the $10^{-6}$ range).}
 \end{figure}
 
 \begin{figure}[h]
@@ -203,6 +252,21 @@ report/tables/summary_all_subjects.csv
 report/tables/table_method_means_efficiency.csv
 report/tables/table_subject_best_detailed.csv
 report/tables/table_all_experiments_compact.csv
+\end{lstlisting}
+
+\textbf{Example input-output pair from one experiment (dog, E3):}
+\begin{lstlisting}[style=compact]
+Input:
+  prompt: "a photo of sks dog in a park"
+  model: SD-v1.5 + OFT(r=2)
+
+Output artifact files:
+  generated_images/gen_000.png
+  eval_results.json: {
+    "clip_i": 0.7411,
+    "clip_t": 0.2975,
+    "dino": 0.2016
+  }
 \end{lstlisting}
 
 \section{Discussion}

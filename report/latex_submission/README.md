@@ -13,15 +13,17 @@ This folder is a standalone LaTeX package for the final report.
 
 ```bash
 cd report/latex_submission
-pdflatex -interaction=nonstopmode -halt-on-error main.tex
-pdflatex -interaction=nonstopmode -halt-on-error main.tex
+tectonic main.tex
+tectonic submission_checklist.tex
 ```
 
 Output PDF:
 
 - `main.pdf`
+- `submission_checklist.pdf`
 
 ## Notes
 
 - This package is self-contained and does not depend on external figure paths.
 - Student info is embedded in the title section.
+- If `tectonic` is missing, run: `conda install -y -n base -c conda-forge tectonic`
