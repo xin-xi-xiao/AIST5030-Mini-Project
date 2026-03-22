@@ -24,6 +24,11 @@ figures/realfull_*/
 report/*.pdf
 report/*.docx
 report/*.pptx
+report/latex_submission/build/
+report/latex_submission/*.log
+report/latex_submission/*.aux
+report/latex_submission/*.xdv
+report/latex_submission/*.out
 
 # checkpoints and caches
 cache/
