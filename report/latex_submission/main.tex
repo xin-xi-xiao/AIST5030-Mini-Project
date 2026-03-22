@@ -119,6 +119,7 @@ Audit result: \textbf{all passed}. Therefore, conclusions are based on a complet
 \centering
 \caption{Primary quantitative results: method-wise means over three subjects.}
 {\scriptsize
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{@{}lcccccc@{}}
 \toprule
 Method & CLIP-I & CLIP-T & DINO & Params & CI/M & DINO/M \\
@@ -163,6 +164,20 @@ cat & E2\_oft\_r8 (0.7305) & E3\_oft\_r2 (0.2216) \\
 \end{tabular}
 \end{table}
 
+\textbf{Subject-level ablation reading}: backpack and dog show consistent
+co-optimization under E3 (best CLIP-I and best DINO simultaneously), while cat
+reveals an objective tension where E2 maximizes identity fidelity but E3
+maximizes semantic similarity. This asymmetry suggests that practical model
+selection should be target-aware: identity-centric deployments prefer higher
+CLIP-I settings, whereas semantic-consistency-sensitive applications prefer
+higher DINO settings.
+
+\textbf{Training-process implication}: because all methods are run with the same
+prompt set, step budget, and data split, the observed cross-method differences
+are attributable to parameterization behavior rather than experimental
+confounders. This strengthens the causal interpretation of OFT-vs-LoRA and
+OFT-vs-BOFT comparisons in this report.
+
 \section{Figures and Qualitative Evidence}
 \begin{center}
 \includegraphics[width=0.98\columnwidth]{assets/plots/plot_overview_grid.png}
@@ -170,7 +185,7 @@ cat & E2\_oft\_r8 (0.7305) & E3\_oft\_r2 (0.2216) \\
 \end{center}
 
 \begin{center}
-\includegraphics[width=0.98\columnwidth]{assets/qual/qual_all_subjects.png}
+\includegraphics[width=0.90\columnwidth]{assets/qual/qual_all_subjects.png}
 \captionof{figure}{Qualitative baseline-vs-finetuned comparison across all three subjects (top-to-bottom: dog E3, backpack E3, cat E2). Each row uses identical prompts before/after finetuning.}
 \end{center}
 
@@ -247,16 +262,20 @@ Final quantitative summaries and conclusions & Completed \\
 \begin{lstlisting}[style=compact]
 bash scripts/setup_env.sh
 bash scripts/run_all_subjects.sh
-python scripts/collect_results.py --outputs_root outputs --save_csv figures/summary.csv
-python scripts/visualize.py --outputs_root outputs --figures_root figures
+python scripts/collect_results.py \
+  --outputs_root outputs \
+  --save_csv figures/summary.csv
+python scripts/visualize.py \
+  --outputs_root outputs \
+  --figures_root figures
 \end{lstlisting}
 
 \textbf{Evidence paths}:
 \begin{itemize}
-\item \texttt{outputs\_realfull\_20260323\_011116}
-\item \texttt{figures/realfull\_20260323\_011116}
-\item \texttt{report/tables/*}
-\item \texttt{report/latex\_submission/assets/tables/integrity\_audit.txt}
+\item \path{outputs_realfull_20260323_011116}
+\item \path{figures/realfull_20260323_011116}
+\item \path{report/tables/*}
+\item \path{report/latex_submission/assets/tables/integrity_audit.txt}
 \end{itemize}
 
 \textbf{Risk boundary}: conclusions are valid for the assignment setup
