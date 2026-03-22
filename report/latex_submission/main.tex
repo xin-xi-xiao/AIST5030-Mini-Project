@@ -143,12 +143,10 @@ $+0.0240$ and DINO by $+0.0485$ in absolute score. BOFT uses only
 $4.00\%$ of OFT trainable parameters while remaining competitive on CLIP-T,
 which clarifies the quality-efficiency tradeoff frontier.
 
-\textbf{Process-aware observations from run logs and artifacts}: training losses
-show smooth descent without instability spikes across subjects, indicating that
-the fixed 800-step budget is sufficient for comparative evaluation. In the
-saved outputs, identity consistency gains are strongest for dog/backpack under
-E3 while cat shows a more nuanced tradeoff between CLIP-I and DINO, matching
-the metric-decoupling behavior observed in Table 3.
+\textbf{Process-aware observations}: losses descend smoothly for all subjects
+without instability spikes, indicating the fixed 800-step budget is adequate
+for method comparison. E3 is consistently strongest on dog/backpack, while cat
+shows a CLIP-I vs DINO tradeoff.
 
 \begin{table}[t]
 \centering
@@ -164,19 +162,13 @@ cat & E2\_oft\_r8 (0.7305) & E3\_oft\_r2 (0.2216) \\
 \end{tabular}
 \end{table}
 
-\textbf{Subject-level ablation reading}: backpack and dog show consistent
-co-optimization under E3 (best CLIP-I and best DINO simultaneously), while cat
-reveals an objective tension where E2 maximizes identity fidelity but E3
-maximizes semantic similarity. This asymmetry suggests that practical model
-selection should be target-aware: identity-centric deployments prefer higher
-CLIP-I settings, whereas semantic-consistency-sensitive applications prefer
-higher DINO settings.
+\textbf{Subject-level ablation reading}: dog/backpack are co-optimized by E3,
+while cat prefers E2 for CLIP-I and E3 for DINO. Model selection should thus
+be objective-aware (identity-centric vs semantic-consistency-centric).
 
-\textbf{Training-process implication}: because all methods are run with the same
-prompt set, step budget, and data split, the observed cross-method differences
-are attributable to parameterization behavior rather than experimental
-confounders. This strengthens the causal interpretation of OFT-vs-LoRA and
-OFT-vs-BOFT comparisons in this report.
+\textbf{Training-process implication}: since prompt set, step budget, and data
+split are fixed across methods, observed gaps are attributable to
+parameterization behavior rather than protocol confounders.
 
 \section{Sanity and Robustness Checks}
 To validate result correctness before interpretation, we performed a structured
@@ -205,9 +197,20 @@ Energy changes bounded ($<10^{-4}$) & Pass \\
 \end{tabular}}
 \end{table}
 
-These checks reduce the risk of silent pipeline faults (partial outputs,
-malformed metrics, or serialization drift), and support using the observed
-method ranking for downstream conclusions.
+These checks reduce the risk of silent pipeline faults and support using the
+observed method ranking for downstream conclusions.
+
+\section{Figures and Qualitative Evidence}
+\vspace{0.00\textheight}
+\begin{center}
+\includegraphics[width=0.84\columnwidth]{assets/plots/plot_overview_grid.png}
+\captionof{figure}{Comprehensive visualization grid (columns: loss, metrics, energy; rows: dog, backpack, cat). This compact view jointly supports convergence, quality, and geometry analysis.}
+\end{center}
+
+\begin{center}
+\includegraphics[width=0.70\columnwidth]{assets/qual/qual_all_subjects.png}
+\captionof{figure}{Qualitative baseline-vs-finetuned comparison across all three subjects (top-to-bottom: dog E3, backpack E3, cat E2). Each row uses identical prompts before/after finetuning.}
+\end{center}
 
 \section{Code-to-Result Example}
 A complete run stores both numerical and visual artifacts. Example directory:
@@ -222,7 +225,7 @@ outputs_realfull_20260323_011116/dog/E3_oft_r2/
   generated_images/*.png (25)
 \end{lstlisting}
 
-Global summaries for report reproducibility:
+Global summaries for reproducibility:
 \begin{lstlisting}[style=compact]
 report/tables/summary_all_subjects.csv
 report/tables/table_method_means_efficiency.csv
@@ -252,18 +255,11 @@ Output artifact files:
 
 \textbf{Geometric behavior}: hyperspherical energy changes remain stable at the $10^{-6}$ level for all methods. The lower values in orthogonal-family methods provide empirical support for geometry-preserving updates.
 
-\textbf{External validity}: conclusions are statistically and procedurally reliable for the assigned setting (3 subjects, 25 prompts, 800 steps, SD-v1.5). Broader generalization requires expanding subject diversity and prompt complexity.
+\textbf{External validity}: conclusions are reliable for the assigned setting
+(3 subjects, 25 prompts, 800 steps, SD-v1.5); broader generalization requires
+more subjects and richer prompt diversity.
 
-\section{Figures and Qualitative Evidence}
-\begin{center}
-\includegraphics[width=0.98\columnwidth]{assets/plots/plot_overview_grid.png}
-\captionof{figure}{Comprehensive visualization grid (columns: loss, metrics, energy; rows: dog, backpack, cat). This compact view jointly supports convergence, quality, and geometry analysis.}
-\end{center}
-
-\begin{center}
-\includegraphics[width=0.82\columnwidth]{assets/qual/qual_all_subjects.png}
-\captionof{figure}{Qualitative baseline-vs-finetuned comparison across all three subjects (top-to-bottom: dog E3, backpack E3, cat E2). Each row uses identical prompts before/after finetuning.}
-\end{center}
+\textbf{Limitations and future work}: external validity can be further strengthened by extending to more subjects, longer-tail prompts, and higher-resolution diffusion backbones (for example SDXL) under the same OFT-vs-LoRA protocol.
 
 \section{Submission and Reproducibility Checklist}
 \begin{table}[t]
@@ -289,19 +285,14 @@ Final quantitative summaries and conclusions & Completed \\
 \begin{lstlisting}[style=compact]
 bash scripts/setup_env.sh
 bash scripts/run_all_subjects.sh
-python scripts/collect_results.py \
-  --outputs_root outputs \
-  --save_csv figures/summary.csv
-python scripts/visualize.py \
-  --outputs_root outputs \
-  --figures_root figures
+python scripts/collect_results.py --outputs_root outputs --save_csv figures/summary.csv
+python scripts/visualize.py --outputs_root outputs --figures_root figures
 \end{lstlisting}
 
 \textbf{Evidence paths}:
 \begin{itemize}
 \item \path{outputs_realfull_20260323_011116}
 \item \path{figures/realfull_20260323_011116}
-\item \path{report/tables/*}
 \item \path{report/latex_submission/assets/tables/integrity_audit.txt}
 \end{itemize}
 
