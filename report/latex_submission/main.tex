@@ -255,9 +255,7 @@ Output artifact files:
 
 \textbf{Geometric behavior}: hyperspherical energy remains stable at $10^{-6}$ for all methods. Orthogonal-family methods show lower values, supporting geometry preservation.
 
-\textbf{External validity}: conclusions are valid for the assignment setting (3 subjects, 25 prompts, 800 steps, SD-v1.5); broader generalization requires more subjects and diverse prompts.
-
-\textbf{Future work}: external validity strengthens via more subjects, longer-tail prompts, and higher-res backbones (e.g., SDXL) under the OFT-vs-LoRA protocol.
+\textbf{External validity}: conclusions are valid for the assignment setting (3 subjects, 25 prompts, 800 steps, SD-v1.5).
 
 \begin{table}[t]
 \centering
@@ -279,6 +277,8 @@ LoRA & 0.0216 & 0.0085 & 0.1462 \\
 \includegraphics[width=0.90\columnwidth]{assets/qual/qual_all_subjects.png}
 \caption{Qualitative baseline-vs-finetuned comparison across all three subjects (top-to-bottom: dog E3, backpack E3, cat E2). Each row uses identical prompts before/after finetuning, showing stronger identity anchoring after finetuning.}
 \end{figure}
+
+\textbf{Key qualitative insights}: dog and backpack exhibit strong metric alignment ($r_{\text{CLIP-I/DINO}}=0.975$ and $0.900$) where E3 dominates both CLIP-I and DINO. Cat shows orthogonal metric behavior ($r=0.445$), requiring objective-specific tuning: E2 for identity (CLIP-I=0.7305) versus E3 for semantic consistency (DINO=0.2216). Visually, OFT variants demonstrate sharper subject boundaries and foreground-background separation, while BOFT maintains competitive identity preservation with 4.5\% trainable parameters. Cross-method robustness: OFT exhibits the lowest DINO variance ($\sigma=0.1134$), indicating stable geometry updates across subjects.
 
 \section{Submission and Reproducibility Checklist}
 \begin{table}[t]
