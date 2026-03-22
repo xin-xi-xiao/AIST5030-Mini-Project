@@ -201,16 +201,16 @@ These checks reduce the risk of silent pipeline faults and support using the
 observed method ranking for downstream conclusions.
 
 \section{Figures and Qualitative Evidence}
-\vspace{0.00\textheight}
-\begin{center}
-\includegraphics[width=0.84\columnwidth]{assets/plots/plot_overview_grid.png}
-\captionof{figure}{Comprehensive visualization grid (columns: loss, metrics, energy; rows: dog, backpack, cat). This compact view jointly supports convergence, quality, and geometry analysis.}
-\end{center}
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.96\columnwidth]{assets/plots/plot_overview_grid.png}
+\caption{Comprehensive visualization grid (columns: loss, metrics, energy; rows: dog, backpack, cat). The panel jointly validates convergence behavior, quality ranking, and geometry stability.}
+\end{figure}
 
-\begin{center}
-\includegraphics[width=0.70\columnwidth]{assets/qual/qual_all_subjects.png}
-\captionof{figure}{Qualitative baseline-vs-finetuned comparison across all three subjects (top-to-bottom: dog E3, backpack E3, cat E2). Each row uses identical prompts before/after finetuning.}
-\end{center}
+From the grid, all methods converge without divergence spikes; OFT variants
+show stronger CLIP-I/DINO profiles on dog and backpack, while cat remains the
+most tradeoff-sensitive subject. Energy trajectories stay near zero for all
+methods, with orthogonal-family updates consistently smoother than LoRA.
 
 \section{Code-to-Result Example}
 A complete run stores both numerical and visual artifacts. Example directory:
@@ -260,6 +260,27 @@ Output artifact files:
 more subjects and richer prompt diversity.
 
 \textbf{Limitations and future work}: external validity can be further strengthened by extending to more subjects, longer-tail prompts, and higher-resolution diffusion backbones (for example SDXL) under the same OFT-vs-LoRA protocol.
+
+\begin{table}[t]
+\centering
+\caption{Cross-run dispersion by method (std over all 24 runs; lower is more stable).}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Method & $\sigma$(CLIP-I) & $\sigma$(CLIP-T) & $\sigma$(DINO) \\
+\midrule
+OFT  & 0.0239 & 0.0065 & 0.1134 \\
+COFT & 0.0271 & 0.0101 & 0.1703 \\
+BOFT & 0.0230 & 0.0106 & 0.1716 \\
+LoRA & 0.0216 & 0.0085 & 0.1462 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.90\columnwidth]{assets/qual/qual_all_subjects.png}
+\caption{Qualitative baseline-vs-finetuned comparison across all three subjects (top-to-bottom: dog E3, backpack E3, cat E2). Each row uses identical prompts before/after finetuning, showing stronger identity anchoring after finetuning.}
+\end{figure}
 
 \section{Submission and Reproducibility Checklist}
 \begin{table}[t]
