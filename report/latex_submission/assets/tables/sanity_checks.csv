@@ -1,0 +1,9 @@
+check,pass,value
+rows_expected_24,True,24
+unique_subjects_3,True,3
+clip_i_range,True,0.6857-0.7746
+clip_t_range,True,0.2975-0.3288
+dino_range,True,0.0370-0.4084
+positive_params,True,522624
+energy_small,True,max=1.70e-06
+each_subject_has_8_exps,True,"{'backpack': 8, 'cat': 8, 'dog': 8}"

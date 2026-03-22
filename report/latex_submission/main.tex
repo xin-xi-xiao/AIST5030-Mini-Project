@@ -178,18 +178,36 @@ are attributable to parameterization behavior rather than experimental
 confounders. This strengthens the causal interpretation of OFT-vs-LoRA and
 OFT-vs-BOFT comparisons in this report.
 
-\section{Figures and Qualitative Evidence}
-\begin{center}
-\includegraphics[width=0.98\columnwidth]{assets/plots/plot_overview_grid.png}
-\captionof{figure}{Comprehensive visualization grid (columns: loss, metrics, energy; rows: dog, backpack, cat). This compact view jointly supports convergence, quality, and geometry analysis.}
-\end{center}
+\section{Sanity and Robustness Checks}
+To validate result correctness before interpretation, we performed a structured
+sanity pass over all 24 runs. All checks passed: row count consistency
+(24/24), subject coverage (3/3), per-subject experiment completeness (8/8),
+valid metric ranges ($\mathrm{CLIP\mbox{-}I}\in[0.6857,0.7746]$,
+$\mathrm{CLIP\mbox{-}T}\in[0.2975,0.3288]$, $\mathrm{DINO}\in[0.0370,0.4084]$),
+strictly positive trainable parameters (minimum 522,624), and bounded energy
+change (maximum $1.70\times10^{-6}$).
 
-\begin{center}
-\includegraphics[width=0.90\columnwidth]{assets/qual/qual_all_subjects.png}
-\captionof{figure}{Qualitative baseline-vs-finetuned comparison across all three subjects (top-to-bottom: dog E3, backpack E3, cat E2). Each row uses identical prompts before/after finetuning.}
-\end{center}
+\begin{table}[t]
+\centering
+\caption{Correctness-oriented sanity checks over the complete run matrix.}
+{\footnotesize
+\begin{tabular}{@{}lc@{}}
+\toprule
+Check & Status \\
+\midrule
+24 rows in global summary & Pass \\
+3 unique subjects detected & Pass \\
+8 experiments per subject & Pass \\
+CLIP-I/CLIP-T/DINO in valid range & Pass \\
+Trainable params strictly positive & Pass \\
+Energy changes bounded ($<10^{-4}$) & Pass \\
+\bottomrule
+\end{tabular}}
+\end{table}
 
-\FloatBarrier
+These checks reduce the risk of silent pipeline faults (partial outputs,
+malformed metrics, or serialization drift), and support using the observed
+method ranking for downstream conclusions.
 
 \section{Code-to-Result Example}
 A complete run stores both numerical and visual artifacts. Example directory:
@@ -227,8 +245,6 @@ Output artifact files:
   }
 \end{lstlisting}
 
-\balance
-
 \section{Discussion}
 \textbf{Primary finding}: under a fixed and complete 24-run protocol, OFT achieves the strongest overall balance between identity fidelity and semantic similarity, while BOFT is preferable under strict trainable-parameter constraints.
 
@@ -237,6 +253,17 @@ Output artifact files:
 \textbf{Geometric behavior}: hyperspherical energy changes remain stable at the $10^{-6}$ level for all methods. The lower values in orthogonal-family methods provide empirical support for geometry-preserving updates.
 
 \textbf{External validity}: conclusions are statistically and procedurally reliable for the assigned setting (3 subjects, 25 prompts, 800 steps, SD-v1.5). Broader generalization requires expanding subject diversity and prompt complexity.
+
+\section{Figures and Qualitative Evidence}
+\begin{center}
+\includegraphics[width=0.98\columnwidth]{assets/plots/plot_overview_grid.png}
+\captionof{figure}{Comprehensive visualization grid (columns: loss, metrics, energy; rows: dog, backpack, cat). This compact view jointly supports convergence, quality, and geometry analysis.}
+\end{center}
+
+\begin{center}
+\includegraphics[width=0.82\columnwidth]{assets/qual/qual_all_subjects.png}
+\captionof{figure}{Qualitative baseline-vs-finetuned comparison across all three subjects (top-to-bottom: dog E3, backpack E3, cat E2). Each row uses identical prompts before/after finetuning.}
+\end{center}
 
 \section{Submission and Reproducibility Checklist}
 \begin{table}[t]
