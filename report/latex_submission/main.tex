@@ -17,9 +17,9 @@
 \usepackage{balance}
 \setlist{nosep,leftmargin=*}
 \setlength{\columnsep}{0.2in}
-\setlength{\textfloatsep}{6pt}
-\setlength{\floatsep}{4pt}
-\setlength{\intextsep}{4pt}
+\setlength{\textfloatsep}{5pt}
+\setlength{\floatsep}{3pt}
+\setlength{\intextsep}{3pt}
 \captionsetup{font=small}
 
 \lstdefinestyle{compact}{
@@ -40,7 +40,7 @@
 
 \begin{document}
 \maketitle
-\vspace{-1.2em}
+\vspace{-1.5em}
 
 \begin{abstract}
 We present a full OFT-centered DreamBooth study on Stable Diffusion v1.5 with three subjects (dog/backpack/cat), eight PEFT configurations, and strict integrity checks. The final run contains 24/24 completed experiments with complete artifacts. We compare OFT/COFT/BOFT/LoRA on CLIP-I, CLIP-T, DINO, trainable parameter ratio, and hyperspherical energy change. OFT leads in average CLIP-I and DINO, while BOFT achieves the strongest parameter efficiency. We provide reproducible scripts, compact evidence tables, qualitative before-vs-after cases, and requirement-level traceability.
@@ -249,17 +249,15 @@ Output artifact files:
 \end{lstlisting}
 
 \section{Discussion}
-\textbf{Primary finding}: under a fixed and complete 24-run protocol, OFT achieves the strongest overall balance between identity fidelity and semantic similarity, while BOFT is preferable under strict trainable-parameter constraints.
+\textbf{Primary finding}: OFT achieves the strongest balance between identity fidelity and semantic similarity; BOFT is preferable under parameter constraints.
 
-\textbf{Cross-metric insight}: cat exhibits a metric decoupling pattern (best CLIP-I: E2, best DINO: E3), indicating that identity preservation and semantic alignment are related but non-identical objectives. Therefore, single-metric model selection is not recommended.
+\textbf{Cross-metric insight}: cat exhibits metric decoupling (best CLIP-I: E2, best DINO: E3), indicating that identity and semantic alignment are non-identical objectives. Single-metric model selection is not recommended.
 
-\textbf{Geometric behavior}: hyperspherical energy changes remain stable at the $10^{-6}$ level for all methods. The lower values in orthogonal-family methods provide empirical support for geometry-preserving updates.
+\textbf{Geometric behavior}: hyperspherical energy remains stable at $10^{-6}$ for all methods. Orthogonal-family methods show lower values, supporting geometry preservation.
 
-\textbf{External validity}: conclusions are reliable for the assigned setting
-(3 subjects, 25 prompts, 800 steps, SD-v1.5); broader generalization requires
-more subjects and richer prompt diversity.
+\textbf{External validity}: conclusions are valid for the assignment setting (3 subjects, 25 prompts, 800 steps, SD-v1.5); broader generalization requires more subjects and diverse prompts.
 
-\textbf{Limitations and future work}: external validity can be further strengthened by extending to more subjects, longer-tail prompts, and higher-resolution diffusion backbones (for example SDXL) under the same OFT-vs-LoRA protocol.
+\textbf{Future work}: external validity strengthens via more subjects, longer-tail prompts, and higher-res backbones (e.g., SDXL) under the OFT-vs-LoRA protocol.
 
 \begin{table}[t]
 \centering
