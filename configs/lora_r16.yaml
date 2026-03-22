@@ -1,0 +1,5 @@
+name: E8_lora_r16
+method: lora
+r: 16
+measure_energy: true
+max_train_steps: 800

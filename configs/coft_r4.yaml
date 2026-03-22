@@ -1,0 +1,6 @@
+name: E4_coft_r4
+method: coft
+r: 4
+eps: 0.001
+measure_energy: true
+max_train_steps: 800

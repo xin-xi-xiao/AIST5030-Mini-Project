@@ -1,0 +1,16 @@
+torch
+torchvision
+torchaudio
+diffusers>=0.30.0
+transformers>=4.45.0
+accelerate>=0.34.0
+peft>=0.14.0
+datasets
+wandb
+matplotlib
+seaborn
+pillow
+open_clip_torch
+numpy
+pyyaml
+scipy

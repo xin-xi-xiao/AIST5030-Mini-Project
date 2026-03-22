@@ -1,0 +1,6 @@
+name: E5_oft_cayley
+method: oft
+r: 4
+use_cayley_neumann: true
+measure_energy: true
+max_train_steps: 800

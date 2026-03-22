@@ -1,0 +1,6 @@
+name: E6_boft_b4
+method: boft
+boft_block_size: 4
+boft_n_butterfly_factor: 2
+measure_energy: true
+max_train_steps: 800

@@ -1,0 +1,25 @@
+a photo of sks {subject}
+a close-up photo of sks {subject}
+a photo of sks {subject} in the studio
+a photo of sks {subject} in a garden
+a photo of sks {subject} on the beach
+a photo of sks {subject} in the snow
+a photo of sks {subject} under sunset light
+a photo of sks {subject} in cinematic lighting
+a photo of sks {subject} in front of a city skyline
+a photo of sks {subject} beside a river
+a photo of sks {subject} in a forest
+a photo of sks {subject} in a room with warm light
+a photo of sks {subject} with dramatic shadows
+a photo of sks {subject} with a colorful background
+a watercolor painting of sks {subject}
+a pencil sketch of sks {subject}
+a clay model of sks {subject}
+a photo of sks {subject} wearing sunglasses
+a photo of sks {subject} with a hat
+a photo of sks {subject} on a wooden table
+a photo of sks {subject} next to flowers
+a photo of sks {subject} with the Eiffel Tower
+a photo of sks {subject} in Tokyo street style
+a low-angle photo of sks {subject}
+a high-detail portrait of sks {subject}

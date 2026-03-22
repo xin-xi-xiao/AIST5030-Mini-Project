@@ -1,0 +1,35 @@
+.venv/
+.vscode/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.swo
+.DS_Store
+
+# outputs and logs
+outputs/*
+!outputs/.gitkeep
+outputs_real_full/
+outputs_realfull_*/
+logs/*
+!logs/.gitkeep
+logs/realfull_*/
+figures/*
+!figures/.gitkeep
+figures/realfull_*/
+
+# report build artifacts
+report/*.pdf
+report/*.docx
+report/*.pptx
+
+# checkpoints and caches
+cache/
+checkpoints/
+wandb/
+
+# local data
+data/dreambooth/*
+!data/dreambooth/README.md

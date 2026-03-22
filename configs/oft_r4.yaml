@@ -1,0 +1,6 @@
+name: E1_oft_r4
+method: oft
+r: 4
+oft_block_size: 0
+measure_energy: true
+max_train_steps: 800
