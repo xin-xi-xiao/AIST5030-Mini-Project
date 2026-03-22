@@ -1,8 +1,7 @@
 # OFT DreamBooth: Parameter-Efficient Finetuning on Foundation Models
-
-**Student:** Mingjun Wang (ID: 1155251294)  
+ 
 **Course:** AIST5030 - Mini-Project  
-**Date:** March 23, 2026
+**Date:** March 22, 2026
 
 ## Overview
 
